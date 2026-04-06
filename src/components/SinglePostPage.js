@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const SinglePostPage = ({ posts }) => {
   const { postId } = useParams();
@@ -12,7 +12,9 @@ const SinglePostPage = ({ posts }) => {
       <h2>{post.title}</h2>
       <p>{post.content}</p>
 
-      <a className="button" href={`/editPost/${post.id}`}>Edit</a>
+      <Link className="button" to={`/editPost/${post.id}`}>
+        Edit Post
+      </Link>
     </div>
   );
 };
