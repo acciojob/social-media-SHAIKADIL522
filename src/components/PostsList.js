@@ -6,26 +6,25 @@ const PostsList = ({ posts, addReaction }) => {
     <div className="posts-list">
       {posts.map(post => (
         <div key={post.id}>
-          <h3>{post.title}</h3>
-          <p>{post.content}</p>
+          <h3>{post.title}</h3>                 {/* 1 */}
+          <p>{post.content}</p>                 {/* 2 */}
 
-          {/* 👇 THIS DIV MUST BE 4th child */}
+          {/* 👇 3rd child (IMPORTANT) */}
+          <Link className="button" to={`/posts/${post.id}`}>
+            View Post
+          </Link>
+
+          {/* 👇 4th child (CRITICAL for Cypress) */}
           <div>
             {["like","love","wow","haha","noop"].map(r => (
               <button
                 key={r}
-                className="button"
                 onClick={() => addReaction(post.id, r)}
               >
                 {post.reactions[r]}
               </button>
             ))}
           </div>
-
-          {/* 👇 This should be BEFORE reactions */}
-          <Link className="button" to={`/posts/${post.id}`}>
-            View Post
-          </Link>
         </div>
       ))}
     </div>
