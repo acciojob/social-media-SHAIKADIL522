@@ -1,19 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const UsersList = ({ users }) => {
   return (
     <ul>
-      {users.map((u, index) => (
+      {users.map(u => (
         <li key={u.id}>
-          {/* 👇 Only first item clickable (fix Cypress error) */}
-          {index === 0 ? (
-            <Link className="button" to={`/users/${u.id}`}>
-              {u.name}
-            </Link>
-          ) : (
-            <span>{u.name}</span>
-          )}
+          {/* ✅ MUST be <a> NOT Link */}
+          <a href={`/users/${u.id}`}>{u.name}</a>
         </li>
       ))}
     </ul>
