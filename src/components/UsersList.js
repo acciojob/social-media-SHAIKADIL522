@@ -1,17 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import React from "react";
-import { Link } from "react-router-dom";
 
 const UsersList = ({ users }) => {
   return (
-    <ul>
+    <div>
       {users.slice(0, 3).map((u) => (
-        <li key={u.id}>
+        <div key={u.id}>
           <Link to={`/users/${u.id}`}>{u.name}</Link>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 };
 
