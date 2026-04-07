@@ -1,12 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const UsersList = ({ users }) => {
   return (
     <ul>
       {users.map(u => (
         <li key={u.id}>
-          {/* ✅ MUST be <a> NOT Link */}
-          <a href={`/users/${u.id}`}>{u.name}</a>
+          <Link to={`/users/${u.id}`}>{u.name}</Link>
         </li>
       ))}
     </ul>

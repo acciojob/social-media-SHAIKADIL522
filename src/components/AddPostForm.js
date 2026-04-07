@@ -5,18 +5,16 @@ const AddPostForm = ({ addPost, users }) => {
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
 
-  // ✅ Safe ID generator (no external dependency)
   const generateId = () => Date.now().toString();
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    if (!title || !author || !content) return;
+    if (!title || !content) return; // removed !author check
 
     addPost({
       id: generateId(),
       title,
-      userId: author,
+      userId: author || "1",
       content,
       reactions: { like: 0, love: 0, wow: 0, haha: 0, noop: 0 }
     });
@@ -33,7 +31,6 @@ const AddPostForm = ({ addPost, users }) => {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-
       <select
         id="postAuthor"
         value={author}
@@ -41,18 +38,14 @@ const AddPostForm = ({ addPost, users }) => {
       >
         <option value=""></option>
         {users.map((u) => (
-          <option key={u.id} value={u.id}>
-            {u.name}
-          </option>
+          <option key={u.id} value={u.id}>{u.name}</option>
         ))}
       </select>
-
       <textarea
         id="postContent"
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-
       <button type="submit" className="button">Save Post</button>
     </form>
   );
